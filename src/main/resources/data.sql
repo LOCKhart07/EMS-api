@@ -1,0 +1,3 @@
+INSERT INTO EMPLOYEES(FIRST_NAME, LAST_NAME, EMAIL) VALUES ('hi', 'bye', 'hibye@gmail.com')
+INSERT INTO EMPLOYEES(FIRST_NAME, LAST_NAME, EMAIL) VALUES ('hi', 'bye', 'hibye@gmail.com')
+INSERT INTO EMPLOYEES(FIRST_NAME, LAST_NAME, EMAIL) VALUES ('try', 'ai', 'trykari@gmail.com')
