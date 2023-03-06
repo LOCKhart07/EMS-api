@@ -1,14 +1,12 @@
 package com.lti.ems.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @Column(name = "FIRST_NAME")
     String firstName;

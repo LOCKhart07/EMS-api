@@ -11,17 +11,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173/")
 public class EmployeeController {
     @Autowired
     EmployeeServiceImpl employeeService;
 
     @RequestMapping(value = "/create-employee", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+    public Employee createEmployee(@RequestBody Employee employee) {
         HttpStatus httpStatus = HttpStatus.OK;
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Message", "Employee created bro!");
-        return new ResponseEntity<>(employeeService.addEmployee(employee), httpHeaders, httpStatus);
+//        return new ResponseEntity<>(employeeService.addEmployee(employee), httpHeaders, httpStatus);
+        return employeeService.addEmployee((employee));
     }
+
 
     @RequestMapping(value = {"/employees", "/employees/"}, method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List> outputAllEmployees() {
@@ -32,14 +35,16 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = {"/employees/{emp_Id}", "/employees/id/{emp_Id}"}, method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Employee> outputOneEmployeeById(@PathVariable(name = "emp_Id") int empId) {
+    public Employee outputOneEmployeeById(@PathVariable(name = "emp_Id") int empId) {
         Employee employee = employeeService.getEmployeeByID(empId);
         HttpStatus httpStatus = HttpStatus.FOUND;
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Message", "Here's your employee bro!");
 
-        return new ResponseEntity<>(employee, httpHeaders, httpStatus);
+//        return new ResponseEntity<>(employee, httpHeaders, httpStatus);
+        return employee;
     }
+
 
 
     @RequestMapping(value = "/delete-employee/{eid}", method = RequestMethod.DELETE, produces = "application/json")
